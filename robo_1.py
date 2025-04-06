@@ -455,7 +455,6 @@ def mensagem_slack(mensagem_formatada, saldo_diario, dados_mensagem, headers, sa
         dados_mensagem.append([dataregistrosaldo, 'SALDO DISPONÍVEL', f"R$ {saldo_diario}", 'Saldo'])
         mensagem_formatada += f'```{tabulate(dados_mensagem, headers=headers)}```'
 
-        _msg_slack('U06TVBSB7RN', mensagem_formatada)
         # _msg_slack('notificacao_contas_escrow', mensagem_formatada)
     except Exception as e:
         logger.error(f"FUNÇÃO: mensagem_slack()\nERRO: {e}")
@@ -469,7 +468,6 @@ def mensagem_empresas_especificas_slack(nome_conta, dicio_clientes_excecao, mens
         if nome_conta in dicio_clientes_excecao.keys():
             canal = dicio_clientes_excecao[str(nome_conta)]
             # _msg_slack(canal=canal, msg=mensagem_formatada)
-            _msg_slack('U06TVBSB7RN', mensagem_formatada)
     except Exception as e:
         logger.error(f"FUNÇÃO: mensagem_empresas_especificas_slack()\nERRO: {e}")
         ## _msg_erro_slack(f"<robo_1_novo_v2> - FUNÇÃO: mensagem_empresas_especificas_slack()\nERRO: {e}")
@@ -785,7 +783,6 @@ def tabela_xlsx(driver, nome_conta):
               "cod_hist, saldo, cod_agencia, cpf_contraparte,"
               "nome_contraparte, cgc_cpf) VALUES"
               "(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)")
-    # conn12 = {"BDIP": "172.17.0.12", "BDLOGIN": "", "BDPASSWORD": "@!@#$%)(*&^"}
     print(f'lista_linhas: {lista_linhas}')
     _sql_insert_many(insert, 'Digital', lista_linhas)
     remove_duplicatas()
